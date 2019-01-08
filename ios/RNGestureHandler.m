@@ -263,20 +263,7 @@ shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecog
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
-    if (_recognizer.state == UIGestureRecognizerStateBegan && _recognizer.state == UIGestureRecognizerStatePossible) {
-        return YES;
-    }
-    if ([_simultaneousHandlers count]) {
-        RNGestureHandler *handler = [RNGestureHandler findGestureHandlerByRecognizer:otherGestureRecognizer];
-        if (handler != nil) {
-            for (NSNumber *handlerTag in _simultaneousHandlers) {
-                if ([handler.tag isEqual:handlerTag]) {
-                    return YES;
-                }
-            }
-        }
-    }
-    return NO;
+    return YES;
 }
 
 - (void)reset
